@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 #Bash script that pings an IP address passed as an argument.
 
-#ip address
-
+#ip variable
 IP ="${1}"
 
 #filename variable
