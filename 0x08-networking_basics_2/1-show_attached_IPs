@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Display all active IPV4 addresses on the machine
+
+
+# a different using ifconfig but now ip a new command and ifconfig can be missing in some os
+
+ip -4 -o addr show | awk '{print $4}' | cut -d "/" -f 1
