@@ -1,6 +1,4 @@
-#usr/bin/bash/pup
-
-# creating a file in tmp
+# creates the file
 
 file {'/tmp/school':
 content => 'I love puppet',
