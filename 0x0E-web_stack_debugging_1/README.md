@@ -5,7 +5,9 @@ Requirements:
 
 - Nginx must be running, and listening on port 80 of all the server’s active IPv4 IPs
 - Write a Bash script that configures a server to the above requirements
-``root@966c5664b21f:/# curl 0:80
+<br>
+```
+root@966c5664b21f:/# curl 0:80
 curl: (7) Failed to connect to 0 port 80: Connection refused
 root@966c5664b21f:/#
 root@966c5664b21f:/# ./0-nginx_likes_port_80 > /dev/null 2&>1
@@ -37,7 +39,7 @@ Commercial support is available at
 </body>
 </html>
 root@966c5664b21f:/#
-``
+```
 
 ## 1. Make it sweet and short
 Requirements:
@@ -51,7 +53,7 @@ You cannot use wget
 You cannot execute your previous answer file (Do not include the name of the previous script in this one)
 service (init) must say that nginx is not running ← for real
 <br>
-``
+```
 root@966c5664b21f:/# curl 0:80
 curl: (7) Failed to connect to 0 port 80: Connection refused
 root@966c5664b21f:/#
@@ -88,4 +90,4 @@ root@966c5664b21f:/#
 root@966c5664b21f:/# service nginx status
  * nginx is not running
 root@966c5664b21f:/# 
-``
+```
