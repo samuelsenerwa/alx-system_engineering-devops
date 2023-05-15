@@ -7,7 +7,6 @@
 #   ufw-before-output
 #   ufw-before-forward
 #
-
 # nat Table rules
 *nat
 :PREROUTING ACCEPT [0:0]
