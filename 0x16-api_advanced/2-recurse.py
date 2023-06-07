@@ -18,8 +18,8 @@ def recurse(subreddit, hot_list=[], page=None):
         "User-Agent": "Chrome/91.0.4472.124"
     }
     res = requests.get(url, headers=headers, timeout=10)
-    json_res = res.json()
-    data = json_res.get("data")
+    json_response = response.json()
+    data = json_response.get("data")
 
     if res.status_code == 200:
         hot_posts = data.get("children")
