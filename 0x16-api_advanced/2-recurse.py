@@ -15,7 +15,7 @@ def recurse(subreddit, hot_list=[]):
     if page is not None:
         url = url + "?after={}".format(page)
         headers = {
-                "Users-Agent" : "Chrome/91.0.4472.124"
+                "Users-Agent": "Chrome/91.0.4472.124"
                 }
     response = requests.get(url, headers=headers, timeout=10)
     json_response = response.json()
