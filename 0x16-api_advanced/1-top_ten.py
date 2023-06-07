@@ -14,7 +14,7 @@ def top_ten(subreddit):
     headers = {
             "User-Agent": "Chrome/91.0.4472.124"
             }
-    response = request.get(url, headers=headers, timeout=10)
+    response = requests.get(url, headers=headers, timeout=10)
     json_response = response.json()
     data = json_response.get("data")
 
