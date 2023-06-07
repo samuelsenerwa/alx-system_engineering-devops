@@ -1,33 +1,31 @@
 #!/usr/bin/python3
-"""
-Module contains a function that queries the Reddit API
-and returns the list of all hot posts for a given subreddit.
-"""
+"""Contains recurse function"""
 import requests
 
 
-def recurse(subreddit, hot_list=[], page=None):
-    """
-    Fetches the top ten hot posts in a subreddit.
-    subreddit: subreddit to fetch the top ten hot posts in a subreddit from.
-    """
-    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    if page is not None:
-        url = url + "?after={}".format(page)
+def recurse(subreddit, hot_list=[], after="", count=0):
+    """Returns a list of titles of all hot posts on a given subreddit."""
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     headers = {
-        "User-Agent": "Chrome/91.0.4472.124"
+        "User-Agent": "0x16-api_advanced:project:\
+v1.0.0 (by /u/firdaus_cartoon_jr)"
     }
-    res = requests.get(url, headers=headers, timeout=10)
-    json_response = response.json()
-    data = json_response.get("data")
-
-    if res.status_code == 200:
-        hot_posts = data.get("children")
-        for post in hot_posts:
-            hot_list.append(post.get("data").get("title"))
-        page = data.get("data")
-        if page is None:
-            return hot_list
-        return recurse(subreddit, hot_list, page.get("after"))
-    else:
+    params = {
+        "after": after,
+        "count": count,
+        "limit": 100
+    }
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
+    if response.status_code == 404:
         return None
+
+    results = response.json().get("data")
+    after = results.get("after")
+    count += results.get("dist")
+    for c in results.get("children"):
+        hot_list.append(c.get("data").get("title"))
+
+    if after is not None:
+        return recurse(subreddit, hot_list, after, count)
+    return hot_list
