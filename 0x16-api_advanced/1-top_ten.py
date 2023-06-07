@@ -14,13 +14,13 @@ def top_ten(subreddit):
     headers = {
             "User-Agent": "Chrome/91.0.4472.124"
             }
-    response = request.get(url, headers=headers, timeout)
+    response = request.get(url, headers=headers, timeout=10)
     json_response = response.json()
     data = json_response.get("data")
 
     if response.status_code == 200:
         hot_posts = data.get("children")
-        for posts in hot_posts:
+        for post in hot_posts:
             print(post.get("data").get("title"))
     else:
         print(None)
