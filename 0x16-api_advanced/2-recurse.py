@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
 Module contains a function that queries the Reddit API
-and returns the list of all hot posts given for subreddit
+and returns the list of all hot posts for a given subreddit.
 """
 import requests
 
 
-def recurse(subreddit, hot_list=[]):
+def recurse(subreddit, hot_list=[], page=None):
     """
     Fetches the top ten hot posts in a subreddit.
     subreddit: subreddit to fetch the top ten hot posts in a subreddit from.
@@ -14,14 +14,14 @@ def recurse(subreddit, hot_list=[]):
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     if page is not None:
         url = url + "?after={}".format(page)
-        headers = {
-                "Users-Agent": "Chrome/91.0.4472.124"
-                }
-    response = requests.get(url, headers=headers, timeout=10)
-    json_response = response.json()
-    data = json_response.get("data")
+    headers = {
+        "User-Agent": "Chrome/91.0.4472.124"
+    }
+    res = requests.get(url, headers=headers, timeout=10)
+    json_res = res.json()
+    data = json_res.get("data")
 
-    if response.status_code == 200:
+    if res.status_code == 200:
         hot_posts = data.get("children")
         for post in hot_posts:
             hot_list.append(post.get("data").get("title"))
