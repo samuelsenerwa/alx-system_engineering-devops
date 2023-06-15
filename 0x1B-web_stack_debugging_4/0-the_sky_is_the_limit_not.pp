@@ -10,5 +10,5 @@ exec { 'fix-for-nginx':
 # Restarting Nginx
 exec { 'nginx-restart':
   command => '/etc/init.d/nginx restart',
-  path    => '/sbin:/usr/sbin:/bin:/usr/bin',
+  path    => '/bin:/usr/bin:/bin',
 }
