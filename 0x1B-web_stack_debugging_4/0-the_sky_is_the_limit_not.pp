@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 # Increases the amount of traffic an Nginx server can handle.
 
 # Increase the ULIMIT of the default file
