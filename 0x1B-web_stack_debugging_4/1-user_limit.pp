@@ -1,16 +1,13 @@
-#!/usr/bin/ruby
+# Enable the user holberton to login and open files without error.
 
-# changing the OS configuration to allow login
-
-user { 'holberton':
-  ensure  => present,
-  shell   => 'bin/bash',
+# Increase hard file limit for Holberton user.
+exec { 'increase-hard-file-limit-for-holberton-user':
+  command => 'sed -i "/holberton hard/s/5/50000/" /etc/security/limits.conf',
+  path    => '/usr/local/bin/:/bin/'
 }
 
-# Excuting the the set limit for the user login
-
-exec { 'increase-sof-file-limit-for-holberton-user':
-       command => 'sed -i "/holberton soft/s/4/50000/" /etc/security/limits.conf',
-  user    => 'holberton',
-  path    => 'usr/local/bin/:/bin/',
+# Increase soft file limit for Holberton user.
+exec { 'increase-soft-file-limit-for-holberton-user':
+  command => 'sed -i "/holberton soft/s/4/50000/" /etc/security/limits.conf',
+  path    => '/usr/local/bin/:/bin/'
 }
