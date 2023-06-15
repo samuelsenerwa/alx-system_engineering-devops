@@ -9,8 +9,8 @@ user { 'holberton':
 
 # Excuting the the set limit for the user login
 
-exec { 'set-file-limit':
-  command => 'ulimit -n 4096',
+exec { 'increase-sof-file-limit-for-holberton-user':
+       command => 'sed -i "/holberton soft/s/4/50000/" /etc/security/limits.conf',
   user    => 'holberton',
-  path    => 'usr/bin',
+  path    => 'usr/local/bin/:/bin/',
 }
