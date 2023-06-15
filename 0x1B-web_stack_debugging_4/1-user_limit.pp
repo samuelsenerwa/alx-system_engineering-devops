@@ -4,7 +4,7 @@
 
 user { 'holberton':
   ensure  => present,
-  shell   => 'bin/bash'
+  shell   => 'bin/bash',
 }
 
 # Excuting the the set limit for the user login
